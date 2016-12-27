@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-
 import {DataTable} from "./DataTable";
 import {DefaultSorter} from "./DefaultSorter";
 import {Paginator} from "./Paginator";

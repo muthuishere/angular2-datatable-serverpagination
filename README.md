@@ -1,27 +1,10 @@
-# Table component with sorting and pagination for Angular2
-[![npm version](https://badge.fury.io/js/angular2-datatable.svg)](https://badge.fury.io/js/angular2-datatable)
-[![Build Status](https://travis-ci.org/mariuszfoltak/angular2-datatable.svg?branch=master)](https://travis-ci.org/mariuszfoltak/angular2-datatable)
-[![Code Climate](https://codeclimate.com/github/mariuszfoltak/angular2-datatable/badges/gpa.svg)](https://codeclimate.com/github/mariuszfoltak/angular2-datatable)
-[![Test Coverage](https://codeclimate.com/github/mariuszfoltak/angular2-datatable/badges/coverage.svg)](https://codeclimate.com/github/mariuszfoltak/angular2-datatable/coverage)
-[![npm downloads](https://img.shields.io/npm/dm/angular2-datatable.svg)](https://npmjs.org/angular2-datatable)
-
-## Demo
-
-Check [live demo](http://plnkr.co/edit/PxBaZs?p=preview) in plunker
-
-## Installation
-
-```
-npm i -S angular2-datatable
-```
-
 ## Usage example
 
 AppModule.ts
 ```typescript
 import {NgModule} from "@angular/core";
 ...
-import {DataTableModule} from "angular2-datatable";
+import {DataTableModule} from "angular2-datatable-serverpagination";
 
 @NgModule({
     imports: [
@@ -37,7 +20,7 @@ export class AppModule {
 
 AppComponent.html
 ```html
-<table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+<table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" (onPageChange)="onPageChange($event)" [mfAmountOfRows]="amountOfRows">
     <thead>
     <tr>
         <th style="width: 20%">
@@ -84,16 +67,18 @@ AppComponent.html
    - `mfActivePage: number` - page number (default: 1)
    - `mfSortBy: any` - sort by parameter
    - `mfSortOrder: string` - sort order parameter, "asc" or "desc"
+   - `mfAmountOfRows: number` - total amount of rows
  - outputs
    - `mfSortByChange: any` - sort by parameter
    - `mfSortOrderChange: any` - sort order parameter
- 
+   - `mfOnPageChange: any` - event of page changing or amount of rows on a page. You should write a function, what would reload data from server and use it here
+
 ### `mfDefaultSorter` component
 
  - selector: `mfDefaultSorter`
  - inputs
    - `by: any` - specify how to sort data (argument for lodash function [_.sortBy ](https://lodash.com/docs#sortBy))
- 
+
 ### `mfBootstrapPaginator` component
 Displays buttons for changing current page and number of displayed rows using bootstrap template (css for bootstrap is required). If array length is smaller than current displayed rows on page then it doesn't show button for changing page. If array length is smaller than min value rowsOnPage then it doesn't show any buttons.
 

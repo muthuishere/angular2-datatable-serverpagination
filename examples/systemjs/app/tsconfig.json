@@ -18,8 +18,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "angular2-datatable": ["../../.."],
-      "angular2-datatable/*": ["../../../*"]
+      "angular2-datatable-serverpagination": ["../../.."],
+      "angular2-datatable-serverpagination/*": ["../../../*"]
     }
   }
 }

@@ -25,7 +25,7 @@
 
             // other libraries
             'rxjs': 'npm:rxjs',
-            'angular2-datatable': 'npm:angular2-datatable',
+            'angular2-datatable-serverpagination': 'npm:angular2-datatable-serverpagination',
             'lodash': 'npm:lodash/lodash.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
@@ -37,7 +37,7 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            'angular2-datatable': {
+            'angular2-datatable-serverpagination': {
                 main: 'index.js',
                 defaultExtension: 'js'
             }

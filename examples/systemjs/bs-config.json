@@ -2,7 +2,7 @@
   "server": {
     "baseDir": ".",
     "routes": {
-      "/node_modules/angular2-datatable": "../../."
+      "/node_modules/angular2-datatable-serverpagination": "../../."
     }
   }
 }

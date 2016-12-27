@@ -1,7 +1,7 @@
 {
-  "name": "angular2-datatable",
-  "version": "0.5.2",
-  "description": "DataTable component for Angular2 framework",
+  "name": "angular2-datatable-serverpagination",
+  "version": "0.6.0",
+  "description": "ServerPaginationDataTable component for Angular2 framework",
   "main": "index.js",
   "scripts": {
     "prebuild": "rimraf lib",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mariuszfoltak/angular2-datatable.git"
+    "url": "git+https://github.com/VojtenkoRN/angular2-datatable-serverpagination.git"
   },
   "keywords": [
     "angular",
@@ -25,15 +25,17 @@
     "ng2",
     "table",
     "pagination",
+    "server",
+    "serverpagination",
     "sort",
     "sorting"
   ],
-  "author": "mariuszfoltak@gmail.com",
+  "author": "vojtenko.rn@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mariuszfoltak/angular2-datatable/issues"
+    "url": "https://github.com/VojtenkoRN/angular2-datatable-serverpagination/issues"
   },
-  "homepage": "https://github.com/mariuszfoltak/angular2-datatable#readme",
+  "homepage": "https://github.com/VojtenkoRN/angular2-datatable-serverpagination#readme",
   "devDependencies": {
     "@angular/core": "^2.1.0",
     "@angular/compiler": "^2.1.0",

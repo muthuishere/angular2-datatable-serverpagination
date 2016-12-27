@@ -1,6 +1,13 @@
 import {
-    Directive, Input, EventEmitter, SimpleChange, OnChanges, DoCheck, IterableDiffers,
-    IterableDiffer, Output
+    Directive,
+    Input,
+    EventEmitter,
+    SimpleChange,
+    OnChanges,
+    DoCheck,
+    IterableDiffers,
+    IterableDiffer,
+    Output
 } from "@angular/core";
 import * as _ from "lodash";
 import {ReplaySubject} from "rxjs/Rx";
@@ -31,18 +38,19 @@ export class DataTable implements OnChanges, DoCheck {
 
     @Input("mfSortBy") public sortBy: string|string[] = "";
     @Input("mfSortOrder") public sortOrder = "asc";
-    @Output("mfSortByChange") public sortByChange = new EventEmitter<string|string[]>();
-    @Output("mfSortOrderChange") public sortOrderChange = new EventEmitter<string>();
-
     @Input("mfRowsOnPage") public rowsOnPage = 1000;
     @Input("mfActivePage") public activePage = 1;
+    @Input("mfAmountOfRows") public amountOfRows = 0;
+
+    @Output("mfSortByChange") public sortByChange = new EventEmitter<string|string[]>();
+    @Output("mfSortOrderChange") public sortOrderChange = new EventEmitter<string>();
+    @Output("mfOnPageChange") public onPageChange = new EventEmitter<PageEvent>();
 
     private mustRecalculateData = false;
 
     public data: any[];
 
     public onSortChange = new ReplaySubject<SortEvent>(1);
-    public onPageChange = new EventEmitter<PageEvent>();
 
     public constructor(private differs: IterableDiffers) {
         this.diff = differs.find([]).create(null);
@@ -55,7 +63,7 @@ export class DataTable implements OnChanges, DoCheck {
     public setSort(sortBy: string|string[], sortOrder: string): void {
         if (this.sortBy !== sortBy || this.sortOrder !== sortOrder) {
             this.sortBy = sortBy;
-            this.sortOrder = _.includes(["asc","desc"], sortOrder) ? sortOrder : "asc";
+            this.sortOrder = _.includes(["asc", "desc"], sortOrder) ? sortOrder : "asc";
             this.mustRecalculateData = true;
             this.onSortChange.next({sortBy: sortBy, sortOrder: sortOrder});
             this.sortByChange.emit(this.sortBy);
@@ -64,7 +72,7 @@ export class DataTable implements OnChanges, DoCheck {
     }
 
     public getPage(): PageEvent {
-        return {activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length};
+        return {activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.amountOfRows};
     }
 
     public setPage(activePage: number, rowsOnPage: number): void {
@@ -75,7 +83,7 @@ export class DataTable implements OnChanges, DoCheck {
             this.onPageChange.emit({
                 activePage: this.activePage,
                 rowsOnPage: this.rowsOnPage,
-                dataLength: this.inputData ? this.inputData.length : 0
+                dataLength: this.amountOfRows
             });
         }
     }
@@ -87,14 +95,14 @@ export class DataTable implements OnChanges, DoCheck {
     }
 
     private recalculatePage() {
-        let lastPage = Math.ceil(this.inputData.length / this.rowsOnPage);
+        let lastPage = Math.ceil(this.amountOfRows / this.rowsOnPage);
         this.activePage = lastPage < this.activePage ? lastPage : this.activePage;
         this.activePage = this.activePage || 1;
 
         this.onPageChange.emit({
             activePage: this.activePage,
             rowsOnPage: this.rowsOnPage,
-            dataLength: this.inputData.length
+            dataLength: this.amountOfRows
         });
     }
 
@@ -134,10 +142,6 @@ export class DataTable implements OnChanges, DoCheck {
     }
 
     private fillData(): void {
-        this.activePage = this.activePage;
-        this.rowsOnPage = this.rowsOnPage;
-
-        let offset = (this.activePage - 1) * this.rowsOnPage;
         let data = this.inputData;
         var sortBy = this.sortBy;
         if (typeof sortBy === 'string' || sortBy instanceof String) {
@@ -145,7 +149,6 @@ export class DataTable implements OnChanges, DoCheck {
         } else {
             data = _.orderBy(data, sortBy, [this.sortOrder]);
         }
-        data = _.slice(data, offset, offset + this.rowsOnPage);
         this.data = data;
     }
 

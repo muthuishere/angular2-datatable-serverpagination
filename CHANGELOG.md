@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.2 (2016-11-13)
+
+Changes:
+    
+    - change to server pagination
+
 ## 0.5.2 (2016-11-13)
 
 Changes:

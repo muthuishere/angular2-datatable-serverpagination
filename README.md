@@ -22,7 +22,9 @@ export class AppModule {
 
 AppComponent.html
 ```html
-<table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" (onPageChange)="onPageChange($event)" [mfAmountOfRows]="amountOfRows">
+<table class="table table-striped" [mfData]="data" #mf="mfDataTable" 
+    [mfRowsOnPage]="5" (onPageChange)="onPageChange($event)" 
+    [mfAmountOfRows]="amountOfRows">
     <thead>
     <tr>
         <th style="width: 20%">

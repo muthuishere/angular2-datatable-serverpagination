@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Http} from "@angular/http";
 
-
 @Component({
     selector: 'app',
     templateUrl: 'app/app.component.html'
@@ -34,7 +33,6 @@ export class AppComponent implements OnInit {
         this.amountOfRows = this.pseudoServer.length;
         let start = page * this.rowsOnPage;
         this.data = this.pseudoServer.slice(start, start + this.rowsOnPage);
-
     }
 
     public toInt(num: string) {

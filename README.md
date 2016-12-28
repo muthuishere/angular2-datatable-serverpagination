@@ -14,7 +14,9 @@ import {DataTableModule} from "angular2-datatable-serverpagination";
     ...
 })
 export class AppModule {
-
+    public onPageChange(event) {
+            this.loadFromServer(event.activePage, event.rowsOnPage);
+    }
 }
 ```
 

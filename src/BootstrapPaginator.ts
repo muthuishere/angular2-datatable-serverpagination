@@ -60,4 +60,5 @@ export class BootstrapPaginator implements OnChanges {
             this.minRowsOnPage = _.min(this.rowsOnPageSet)
         }
     }
+
 }

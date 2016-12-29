@@ -164,4 +164,5 @@ export class DataTable implements OnChanges, DoCheck {
             return value;
         };
     }
+
 }

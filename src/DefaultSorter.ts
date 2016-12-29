@@ -11,6 +11,7 @@ import {DataTable, SortEvent} from "./DataTable";
         </a>`
 })
 export class DefaultSorter implements OnInit {
+
     @Input("by") sortBy: string;
 
     isSortedByMeAsc: boolean = false;
@@ -33,4 +34,5 @@ export class DefaultSorter implements OnInit {
             this.mfTable.setSort(this.sortBy, "asc");
         }
     }
+
 }

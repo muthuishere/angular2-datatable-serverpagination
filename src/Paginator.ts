@@ -33,10 +33,11 @@ export class Paginator implements OnChanges {
         this.mfTable.setPage(this.activePage, rowsOnPage);
     }
 
-    private onPageChangeSubscriber = (event: PageEvent)=> {
+    private onPageChangeSubscriber = (event: PageEvent) => {
         this.activePage = event.activePage;
         this.rowsOnPage = event.rowsOnPage;
         this.dataLength = event.dataLength;
         this.lastPage = Math.ceil(this.dataLength / this.rowsOnPage);
     };
+
 }

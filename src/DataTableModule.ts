@@ -23,5 +23,4 @@ import {BootstrapPaginator} from "./BootstrapPaginator";
     ]
 })
 export class DataTableModule {
-
 }
